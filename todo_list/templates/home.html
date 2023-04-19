@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+<title>
+    {% block title %}
+    Todo's 
+    {% endblock title %}
+</title>
+
+
+    {% block content %} <!--(8:30)-->
+    {% if messages %}
+    {% for message in messages %} <!--(13:50)-->
+
+        <div class="alert alert-warning alert-dismissible text-success" role="alert">
+            <button class="close" data-dismiss="alert">
+                <small><sup>x</sup></small>
+            </button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% endif %}
+  
+
+    {% if all_items %}
+        <div>
+           
+        <table class="table table-bordered table-hover">
+            {% for things in all_items %}
+            {% if things.completed %}
+            <tr>
+                <th class="w-80 my-2"><a href="{% url 'edit' things.id %}">{{ things.item }}</a></th>
+                <th class="text-center bg bg-outline-primary border border-5 border-lx-2 w-10 my-2"><a href="{% url 'uncross' things.id %}">TASK</a></th>
+                <th class="text-center bg bg-danger text-danger border border-5 border-light mx-2 w-10 my-2"><a href="{% url 'delete' things.id %}" class="text-light">DELETE</a></th>
+            </tr>
+            {% else %}
+            <tr>
+                <th class="w-80 text-success my-2" id="striker"><a href="{% url 'edit' things.id %}">{{ things.item }}</a></th> 
+                <th class="text-center text-success bg bg-success border border-5 border-light mx-2 w-10 my-2"><a href="{% url 'cross_off' things.id %}" class="">✅</a></th>
+                <th class="text-center bg bg-danger text-danger border border-5 border-light mx-2 w-10 my-2"><a href="{% url 'delete' things.id %}" class="text-light">DELETE</a></th>
+            </tr>
+            {% endif %} <!--(19:06)-->
+        {% endfor %} <!--(14:36)-->
+        </table>
+    {% endif %}
+{% endblock content %}
