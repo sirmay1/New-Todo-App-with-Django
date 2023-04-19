@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # adding new app called todo_list like the tutorial named it codemy.com
+    # added a new app for the project named todo_list for the project django_todo on (04/18/2023)
     'todo_list.apps.TodoListConfig',
 ]
 
